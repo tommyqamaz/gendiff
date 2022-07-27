@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "python-project-lvl2"
+version = "0.1.0"
+description = "gendiff"
+authors = ["qamaz <solgrini@yandex.ru>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+flake8 = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+gendiff = "gendiff.scripts.gendiff.py:main"
