@@ -18,3 +18,5 @@ publish:
 
 package-install:
 	python3 -m pip install --user dist/*.whl
+
+assembly: install build publish package-install
