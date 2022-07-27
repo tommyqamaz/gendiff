@@ -1,8 +1,11 @@
 [tool.poetry]
-name = "python-project-lvl2"
+name = "hexlet-code"
 version = "0.1.0"
 description = "gendiff"
 authors = ["qamaz <solgrini@yandex.ru>"]
+packages = [
+  { include = "gendiff" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -11,9 +14,10 @@ python = "^3.9"
 black = "^22.6.0"
 flake8 = "^4.0.1"
 
+[tool.poetry.scripts]
+say-hello = "gendiff.scripts.hello:main"
+gendiff = "gendiff.scripts.gendiff:main"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-gendiff = "gendiff.scripts.gendiff.py:main"

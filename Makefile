@@ -1,3 +1,6 @@
+run:
+	poetry run gendiff
+
 black:
 	poetry run black gendiff
 
