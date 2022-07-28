@@ -19,4 +19,4 @@ publish:
 package-install:
 	python3 -m pip install --user dist/*.whl
 
-assembly: install build publish package-install
+assembly: lint black install build publish package-install
