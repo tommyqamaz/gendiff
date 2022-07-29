@@ -1,5 +1,5 @@
-run:
-	poetry run gendiff
+assembly: lint black install build publish package-install
+
 
 black:
 	poetry run black gendiff
@@ -19,4 +19,5 @@ publish:
 package-install:
 	python3 -m pip install --user dist/*.whl
 
-assembly: lint black install build publish package-install
+test:
+	poetry run pytest
