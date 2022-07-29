@@ -22,8 +22,13 @@ jobs:
         run: |
           pip install poetry
           make install
-      - name: Run linter and pytest
+      - name: Run linter
         run: |
           make black
           make lint
-          make test
+      - name: Run pytest and coverage
+      - uses: paambaati/codeclimate-action@v2.2.4
+        env:
+          CC_TEST_REPORTER_ID:a742567ceaa51470acac3b6fa75891153f26ba3aea1f8050a865851fcaebe20f
+        with:
+          coverageCommand: make test

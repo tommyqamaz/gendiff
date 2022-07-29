@@ -6,13 +6,13 @@ import json
 
 def generate_diff(path1: str, path2: str):
     diff = {}
-    with open(path1, "r") as f:
-        file1 = json.load(f)
-    with open(path2, "r") as f:
-        file2 = json.load(f)
+
+    file1 = json.load(open(path1))
+    file2 = json.load(open(path2))
 
     keys1 = file1.keys()
     keys2 = file2.keys()
+
     all_keys = sorted(set(list(chain.from_iterable(map(list, [keys1, keys2])))))
     diff = []
     for key in all_keys:
