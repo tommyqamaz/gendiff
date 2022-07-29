@@ -1,15 +1,17 @@
 name: Python CI
 
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # we want to test our package on several versions of Python
         python-version: [3.9.10]
     steps:
       - uses: actions/checkout@v2
@@ -22,13 +24,15 @@ jobs:
         run: |
           pip install poetry
           make install
-      - name: Run linter
+      - name: Run linter and pytest
         run: |
           make black
           make lint
-      - name: Run pytest and coverage
-      - uses: paambaati/codeclimate-action@v2.2.4
+          make test
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.4
         env:
-          CC_TEST_REPORTER_ID:a742567ceaa51470acac3b6fa75891153f26ba3aea1f8050a865851fcaebe20f
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: make test
+          coverageCommand: make test-coverage
+          debug: true

@@ -20,4 +20,7 @@ package-install:
 	python3 -m pip install --user dist/*.whl
 
 test:
-	poetry run pytest --cov-report term-missing --cov=gendiff tests/
+	poetry run pytest
+
+test-coverage:
+	poetry run pytest --cov-report xml --cov=gendiff tests/
