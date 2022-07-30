@@ -1,34 +1,17 @@
 from ..parser import get_parser
-from ..utils import get_file
-from itertools import chain
+from ..utils import get_file, get_diff_as_dict, convert_to_str
 import sys
 
 
 def generate_diff(path1: str, path2: str, mode: str) -> str:
-    diff = {}
+    """Calculates the difference between two files (they can be diffent formats)."""
 
     file1 = get_file(path1, mode)
     file2 = get_file(path2, mode)
 
-    keys1 = file1.keys()
-    keys2 = file2.keys()
-
-    all_keys = sorted(set(list(chain.from_iterable(map(list, [keys1, keys2])))))
-    diff = []
-    for key in all_keys:
-        output1 = file1.get(key, None)
-        output2 = file2.get(key, None)
-        if output1 == output2:
-            diff.append(f"   {key}: {output1}")
-        elif output1 is None:
-            diff.append(f" + {key}: {output2}")
-        elif output2 is None:
-            diff.append(f" - {key}: {output1}")
-        else:
-            diff.append(f" - {key}: {output1}")
-            diff.append(f" + {key}: {output2}")
-
-    return "\n".join(diff)
+    diff = get_diff_as_dict(file1, file2)
+    result = convert_to_str(diff)
+    return result
 
 
 def main():
