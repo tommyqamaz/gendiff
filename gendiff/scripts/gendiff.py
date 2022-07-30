@@ -1,6 +1,6 @@
 import argparse
 from itertools import chain
-
+import sys
 import json
 
 
@@ -31,14 +31,19 @@ def generate_diff(path1: str, path2: str):
     return "\n".join(diff)
 
 
-def main():
+def get_parser():
     parser = argparse.ArgumentParser(
         description="Compares two configuration files and shows a difference."
     )
-    parser.add_argument("-f", "--format", help="set format of output")
+    parser.add_argument("-f", "--format", help="set format of output", choices=["json"])
     parser.add_argument("first_file")
     parser.add_argument("second_file")
-    args = parser.parse_args()
+    return parser
+
+
+def main():
+    parser = get_parser()
+    args = parser.parse_args(sys.argv[1:])
     res = generate_diff(args.first_file, args.second_file)
     print(res)
 
