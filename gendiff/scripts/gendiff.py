@@ -7,7 +7,8 @@ import sys
 def generate_diff(path1: str, path2: str, mode: str) -> str:
     diff = {}
 
-    file1, file2 = get_file(path1, path2, mode)
+    file1 = get_file(path1, mode)
+    file2 = get_file(path2, mode)
 
     keys1 = file1.keys()
     keys2 = file2.keys()
