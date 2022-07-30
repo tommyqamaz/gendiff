@@ -1,21 +1,13 @@
 from ..parser import get_parser
+from ..utils import get_file
 from itertools import chain
 import sys
-import json
-import yaml
-from yaml import Loader
 
 
-def generate_diff(path1: str, path2: str, mode: str):
+def generate_diff(path1: str, path2: str, mode: str) -> str:
     diff = {}
-    if mode == "auto":
-        mode = path1.split(".")[-1]
-    if mode == "json":
-        file1 = json.load(open(path1))
-        file2 = json.load(open(path2))
-    elif mode in ["yaml", "yml"]:
-        file1 = yaml.load(open(path1), Loader)
-        file2 = yaml.load(open(path2), Loader)
+
+    file1, file2 = get_file(path1, path2, mode)
 
     keys1 = file1.keys()
     keys2 = file2.keys()
