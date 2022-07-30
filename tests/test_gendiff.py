@@ -27,6 +27,10 @@ def test_gendiff():
     assert result == expected
 
 
+def test_recursion_gendiff():
+    pass
+
+
 def test_parser():
     parser = get_parser()
 
