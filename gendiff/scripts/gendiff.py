@@ -1,5 +1,6 @@
 from ..parser import get_parser
-from ..utils import get_file, get_diff_as_dict, convert_to_str
+from ..utils import get_file, get_diff_as_dict
+from ..stringify import stringify
 import sys
 
 
@@ -10,7 +11,7 @@ def generate_diff(path1: str, path2: str, mode: str) -> str:
     file2 = get_file(path2, mode)
 
     diff = get_diff_as_dict(file1, file2)
-    result = convert_to_str(diff)
+    result = stringify(diff)
     return result
 
 
