@@ -1,33 +1,38 @@
+from importlib.resources import path
 from gendiff import __version__
+from .test_stringify import get_fixture_path, read
 import pytest
 from gendiff.scripts.gendiff import generate_diff
 from gendiff.parser import get_parser
 from argparse import Namespace
 
 
+plain_data = read(get_fixture_path("diff_plain.txt")).rstrip().split("\n\n\n")
+path1_json = get_fixture_path("file1.json")
+path2_json = get_fixture_path("file2.json")
+path1_yml = get_fixture_path("file1.yml")
+path2_yml = get_fixture_path("file2.yml")
+
+plain_cases = [
+    (path1_json, path2_json),
+    (path1_yml, path2_yml),
+    (path1_json, path2_yml),
+    (path1_yml, path2_json),
+]
+
+
 def test_version():
     assert __version__ == "0.1.0"
 
 
-def test_gendiff():
-    result = generate_diff(
-        "tests/fixtures/file1.json", "tests/fixtures/file2.json", mode="json"
-    )
-    expected = " - follow: False\n   host: hexlet.io\n - proxy: 123.234.53.22\n - timeout: 50\n + timeout: 20\n + verbose: True"
-    assert result == expected
-
-    result = generate_diff(
-        "tests/fixtures/file1.yml", "tests/fixtures/file2.yml", mode="yaml"
-    )
-    assert result == expected
-
-    result = generate_diff(
-        "tests/fixtures/file1.yml", "tests/fixtures/file2.yml", mode="auto"
-    )
+@pytest.mark.parametrize("path1, path2", plain_cases)
+def test_plain(path1, path2):
+    result = generate_diff(path1, path2, mode="auto")
+    expected = plain_data[0]
     assert result == expected
 
 
-def test_recursion_gendiff():
+def test_nested():
     pass
 
 
