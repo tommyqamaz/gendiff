@@ -8,7 +8,7 @@ def _replace_symbol(string, symbol, replacer):
     return string
 
 
-def stringify(value: Any, replacer=" ", spaces_count=1) -> str:
+def stringify(value: Any, replacer=" ", spaces_count=4) -> str:
     """Converts dictionary with differences to pretty string representation"""
 
     def inner(value, replacer, spaces_count, _lvl=1):

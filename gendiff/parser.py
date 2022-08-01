@@ -9,8 +9,8 @@ def get_parser() -> argparse.ArgumentParser:
         "-f",
         "--format",
         help="set format of output",
-        choices=["json", "yaml", "auto"],
-        default="auto",
+        choices=["nested", "plain"],
+        default="nested",
     )
     parser.add_argument("first_file")
     parser.add_argument("second_file")
