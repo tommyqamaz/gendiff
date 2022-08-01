@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from gendiff.stringify import stringify
+from gendiff.formatters import stringify
 
 
 def get_fixture_path(file_name):

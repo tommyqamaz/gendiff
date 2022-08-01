@@ -23,7 +23,9 @@ plain_cases = [
 nexted_diff = read(get_fixture_path("example_nested.txt")).rstrip().split("\n\n\n")
 npath1 = get_fixture_path("nested_file1.json")
 npath2 = get_fixture_path("nested_file2.json")
-nested_cases = [(npath1, npath2)]
+npath3 = get_fixture_path("nested_file1.yml")
+npath4 = get_fixture_path("nested_file2.yml")
+nested_cases = [(npath1, npath2), (npath3, npath4)]
 
 
 def test_version():

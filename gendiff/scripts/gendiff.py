@@ -1,6 +1,6 @@
 from ..parser import get_parser
 from ..utils import get_file, get_diff_as_dict
-from ..stringify import stringify
+from ..formatters import stringify
 import sys
 
 
