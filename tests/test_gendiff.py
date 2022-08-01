@@ -20,7 +20,7 @@ plain_cases = [
     (path1_yml, path2_json),
 ]
 
-nexted_diff = read(get_fixture_path("example_nested.txt")).rstrip().split("\n\n\n")
+nexted_diff = read(get_fixture_path("diff_nested.txt")).rstrip().split("\n\n\n")
 npath1 = get_fixture_path("nested_file1.json")
 npath2 = get_fixture_path("nested_file2.json")
 npath3 = get_fixture_path("nested_file1.yml")
@@ -34,14 +34,14 @@ def test_version():
 
 @pytest.mark.parametrize("path1, path2", plain_cases)
 def test_plain(path1, path2):
-    result = generate_diff(path1, path2, mode="auto")
+    result = generate_diff(path1, path2)
     expected = plain_data[0]
     assert result == expected
 
 
 @pytest.mark.parametrize("path1, path2", nested_cases)
 def test_nested(path1, path2):
-    result = generate_diff(path1, path2, mode="auto")
+    result = generate_diff(path1, path2)
     expected = nexted_diff[0]
     assert result == expected
 
