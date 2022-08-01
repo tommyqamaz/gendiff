@@ -31,7 +31,10 @@ def get_diff_as_dict(file1, file2):
     for key in all_keys:
         output1 = file1.get(key, None)
         output2 = file2.get(key, None)
-        if output1 == output2:
+        if isinstance(output1, dict) and isinstance(output2, dict):
+            output1 = get_diff_as_dict(output1, output2)
+            diff.update({f"   {key}": output1})
+        elif output1 == output2:
             diff.update({f"   {key}": output1})
         elif output1 is None:
             diff.update({f" + {key}": output2})
@@ -42,10 +45,3 @@ def get_diff_as_dict(file1, file2):
             diff.update({f" + {key}": output2})
 
     return diff
-
-
-def convert_to_str(dict_: dict) -> str:
-    str_res = []
-    for i in dict_:
-        str_res.append(f"{i}: {dict_[i]}")
-    return "\n".join(str_res)

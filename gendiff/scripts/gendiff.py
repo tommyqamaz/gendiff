@@ -11,7 +11,7 @@ def generate_diff(path1: str, path2: str, mode: str) -> str:
     file2 = get_file(path2, mode)
 
     diff = get_diff_as_dict(file1, file2)
-    result = stringify(diff)
+    result = stringify(diff, " ", 3)
     return result
 
 

@@ -1,10 +1,10 @@
-from importlib.resources import path
-from gendiff import __version__
-from .test_stringify import get_fixture_path, read
+from argparse import Namespace
 import pytest
+
+from .test_stringify import get_fixture_path, read
 from gendiff.scripts.gendiff import generate_diff
 from gendiff.parser import get_parser
-from argparse import Namespace
+from gendiff import __version__
 
 
 plain_data = read(get_fixture_path("diff_plain.txt")).rstrip().split("\n\n\n")
@@ -20,6 +20,11 @@ plain_cases = [
     (path1_yml, path2_json),
 ]
 
+nexted_diff = read(get_fixture_path("example_nested.txt")).rstrip().split("\n\n\n")
+npath1 = get_fixture_path("nested_file1.json")
+npath2 = get_fixture_path("nested_file2.json")
+nested_cases = [(npath1, npath2)]
+
 
 def test_version():
     assert __version__ == "0.1.0"
@@ -32,8 +37,11 @@ def test_plain(path1, path2):
     assert result == expected
 
 
-def test_nested():
-    pass
+@pytest.mark.parametrize("path1, path2", nested_cases)
+def test_nested(path1, path2):
+    result = generate_diff(path1, path2, mode="auto")
+    expected = nexted_diff[0]
+    assert result == expected
 
 
 def test_parser():
