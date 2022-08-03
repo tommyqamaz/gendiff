@@ -70,9 +70,9 @@ def test_nested(replacer, spases_count, case_index):
 
 
 def test_default_values():
-    assert stringify(primitives) == plain_data[3]
-    assert stringify(primitives, " ") == plain_data[3]
-    assert stringify(primitives, "...") == plain_data[4]
-    assert stringify(nested) == nested_data[3]
-    assert stringify(nested, " ") == nested_data[3]
-    assert stringify(nested, "...") == nested_data[4]
+    assert stringify(primitives, " ", 1) == plain_data[3]
+    assert stringify(primitives, " ", 1) == plain_data[3]
+    assert stringify(primitives, "...", 1) == plain_data[4]
+    assert stringify(nested, " ", 1) == nested_data[3]
+    assert stringify(nested, " ", 1) == nested_data[3]
+    assert stringify(nested, "...", 1) == nested_data[4]

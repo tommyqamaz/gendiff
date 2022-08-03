@@ -4,14 +4,15 @@ from ..formatters.stringify import stringify
 import sys
 
 
-def generate_diff(path1: str, path2: str) -> str:
+def generate_diff(path1: str, path2: str, output_mode: str) -> str:
     """Calculates the difference between two files (they can be diffent formats)."""
 
     file1 = get_file(path1)
     file2 = get_file(path2)
 
     diff = get_diff_as_dict(file1, file2)
-    result = stringify(diff, " ", 4)
+    modes = {"nested": stringify, "plain": None}
+    result = modes[output_mode](diff)
     return result
 
 

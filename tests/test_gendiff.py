@@ -12,12 +12,13 @@ path1_json = get_fixture_path("file1.json")
 path2_json = get_fixture_path("file2.json")
 path1_yml = get_fixture_path("file1.yml")
 path2_yml = get_fixture_path("file2.yml")
+output_mode = "nested"
 
 plain_cases = [
-    (path1_json, path2_json),
-    (path1_yml, path2_yml),
-    (path1_json, path2_yml),
-    (path1_yml, path2_json),
+    (path1_json, path2_json, output_mode),
+    (path1_yml, path2_yml, output_mode),
+    (path1_json, path2_yml, output_mode),
+    (path1_yml, path2_json, output_mode),
 ]
 
 nexted_diff = read(get_fixture_path("diff_nested.txt")).rstrip().split("\n\n\n")
@@ -25,23 +26,23 @@ npath1 = get_fixture_path("nested_file1.json")
 npath2 = get_fixture_path("nested_file2.json")
 npath3 = get_fixture_path("nested_file1.yml")
 npath4 = get_fixture_path("nested_file2.yml")
-nested_cases = [(npath1, npath2), (npath3, npath4)]
+nested_cases = [(npath1, npath2, output_mode), (npath3, npath4, output_mode)]
 
 
 def test_version():
     assert __version__ == "0.1.0"
 
 
-@pytest.mark.parametrize("path1, path2", plain_cases)
-def test_plain(path1, path2):
-    result = generate_diff(path1, path2)
+@pytest.mark.parametrize("path1, path2, output_mode", plain_cases)
+def test_plain(path1, path2, output_mode):
+    result = generate_diff(path1, path2, output_mode)
     expected = plain_data[0]
     assert result == expected
 
 
-@pytest.mark.parametrize("path1, path2", nested_cases)
-def test_nested(path1, path2):
-    result = generate_diff(path1, path2)
+@pytest.mark.parametrize("path1, path2, output_mode", nested_cases)
+def test_nested(path1, path2, output_mode):
+    result = generate_diff(path1, path2, output_mode)
     expected = nexted_diff[0]
     assert result == expected
 
@@ -60,5 +61,5 @@ def test_parser():
     assert excinfo.value.code == 2
 
     assert parser.parse_args(["first/path", "second/path"]) == Namespace(
-        format="auto", first_file="first/path", second_file="second/path"
+        format="nested", first_file="first/path", second_file="second/path"
     )
