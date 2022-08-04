@@ -2,3 +2,5 @@ __pycache__
 .venv
 examples/
 .pytest_cache
+gendiff/convert_json.py
+dist/

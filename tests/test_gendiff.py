@@ -33,7 +33,7 @@ plain_diff_cases = [(npath1, npath2, output_mode2), (npath3, npath4, output_mode
 
 
 def test_version():
-    assert __version__ == "0.1.0"
+    assert __version__ == "2.2.8"
 
 
 @pytest.mark.parametrize("path1, path2, output_mode1", plain_cases)

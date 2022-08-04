@@ -1,5 +1,6 @@
 assembly: lint black install build publish package-install
 
+start: install build package-install
 
 black:
 	poetry run black gendiff
