@@ -8,6 +8,15 @@ def _replace_symbol(string, symbol, replacer):
     return string
 
 
+def process_result(replacer, spaces_count, _lvl, key):
+    temp = f"{replacer*spaces_count*_lvl}{key}: "
+    if str(key).startswith("+"):
+        temp = _replace_symbol(temp, "+", replacer)
+    elif str(key).startswith("-"):
+        temp = _replace_symbol(temp, "-", replacer)
+    return temp
+
+
 def stringify(value: Any, replacer=" ", spaces_count=4) -> str:
     """Converts dictionary with differences to pretty string representation"""
 
@@ -16,12 +25,7 @@ def stringify(value: Any, replacer=" ", spaces_count=4) -> str:
         if isinstance(value, dict):
             result = "{\n"
             for key, val in value.items():
-                temp = f"{replacer*spaces_count*_lvl}{key}: "
-                if str(key).startswith("+"):
-                    temp = _replace_symbol(temp, "+", replacer)
-                elif str(key).startswith("-"):
-                    temp = _replace_symbol(temp, "-", replacer)
-                result += temp
+                result += process_result(replacer, spaces_count, _lvl, key)
                 result += inner(val, replacer, spaces_count, _lvl + 1) + "\n"
             result += replacer * spaces_count * (_lvl - 1) + "}"
         else:
