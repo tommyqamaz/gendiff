@@ -9,7 +9,7 @@ def get_parser() -> argparse.ArgumentParser:
         "-f",
         "--format",
         help="set format of output",
-        choices=["nested", "plain"],
+        choices=["nested", "plain", "json"],
         default="nested",
     )
     parser.add_argument("first_file")

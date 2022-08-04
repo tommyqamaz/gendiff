@@ -7,7 +7,7 @@ def normilize(value):
     return value
 
 
-def make_plain(value):
+def make_plain(value):  # noqa C901
     res = []
 
     def walk(value, parent=None):
@@ -15,15 +15,15 @@ def make_plain(value):
             keys = value.keys()
             if "_added" in keys:
                 if "_removed" in keys:
-                    msg = (
+                    res.append(
                         f"Property '{parent}' was updated. "
                         f"From {normilize(value['_removed'])} "
                         f"to {normilize(value['_added'])}"
                     )
-                    res.append(msg)
                 else:
                     res.append(
-                        f"Property '{parent}' was added with value: {normilize(value['_added'])}"
+                        f"Property '{parent}' was added with value: "
+                        f"{normilize(value['_added'])}"
                     )
             elif "_removed" in keys:
                 res.append(f"Property '{parent}' was removed")
