@@ -1,0 +1,72 @@
+{
+    "common": {
+        "follow": {
+            "_added": "false"
+        },
+        "setting1": {
+            "_no_changes": "Value 1"
+        },
+        "setting2": {
+            "_removed": 200
+        },
+        "setting3": {
+            "_added": "null",
+            "_removed": "true"
+        },
+        "setting4": {
+            "_added": "blah blah"
+        },
+        "setting5": {
+            "_added": {
+                "key5": "value5"
+            }
+        },
+        "setting6": {
+            "doge": {
+                "wow": {
+                    "_added": "so much",
+                    "_removed": ""
+                }
+            },
+            "key": {
+                "_no_changes": "value"
+            },
+            "ops": {
+                "_added": "vops"
+            }
+        }
+    },
+    "group1": {
+        "baz": {
+            "_added": "bars",
+            "_removed": "bas"
+        },
+        "foo": {
+            "_no_changes": "bar"
+        },
+        "nest": {
+            "_added": "str",
+            "_removed": {
+                "key": "value"
+            }
+        }
+    },
+    "group2": {
+        "_removed": {
+            "abc": 12345,
+            "deep": {
+                "id": 45
+            }
+        }
+    },
+    "group3": {
+        "_added": {
+            "deep": {
+                "id": {
+                    "number": 45
+                }
+            },
+            "fee": 100500
+        }
+    }
+}

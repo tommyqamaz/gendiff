@@ -55,3 +55,13 @@ def test_diff_plain(path1, path2, output_mode2):
     result = generate_diff(path1, path2, output_mode2)
     expected = plain_diff[0]
     assert result == expected
+
+
+def test_json():
+    import json
+
+    path = "tests/fixtures/json.json"
+    file = json.load(open(path))
+    result = generate_diff(npath1, npath2, "json")
+    assert len(result) == 1446  # fix later
+    assert len(file) == 4
