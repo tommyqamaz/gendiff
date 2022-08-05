@@ -30,7 +30,7 @@ def _translate(value):
 
 
 def _update_diff_nested(diff, key, output1, output2):
-    mode = "nested"
+    mode = "stylish"
     if isinstance(output1, dict) and isinstance(output2, dict):
         output1 = get_diff_as_dict(output1, output2, mode)
         diff.update({key: output1})
@@ -60,7 +60,7 @@ def _update_diff_plain(diff, key, output1, output2):
         diff.update({key: {"_added": output2, "_removed": output1}})
 
 
-def get_diff_as_dict(file1, file2, mode="nested"):
+def get_diff_as_dict(file1, file2, mode="stylish"):
     """Returns the difference between two tree-like objects as a dictionary."""
     keys1 = file1.keys()
     keys2 = file2.keys()
@@ -70,7 +70,7 @@ def get_diff_as_dict(file1, file2, mode="nested"):
     for key in all_keys:
         output1 = _translate(file1.get(key, EMPTY))
         output2 = _translate(file2.get(key, EMPTY))
-        if mode == "nested":
+        if mode == "stylish":
             _update_diff_nested(diff, key, output1, output2)
         else:
             _update_diff_plain(diff, key, output1, output2)

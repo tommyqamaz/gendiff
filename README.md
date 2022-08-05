@@ -17,16 +17,16 @@
 ```python
 from gendiff import generate_diff
 
-diff = generate_diff(filepath1, filepath2)
+diff = generate_diff(path1, path2)
 ```
 
 ### As CLI tool
 
 ```
 > gendiff --help
-usage: gendiff [-h] [-f FORMAT] first_file second_file
+usage: gendiff [-h] [-f {stylish,plain,json}] first_file second_file
 
-Generate diff
+Compares two configuration files and shows a difference.
 
 positional arguments:
   first_file
@@ -34,14 +34,14 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -f FORMAT, --format FORMAT
+  -f {stylish,plain,json}, --format {stylish,plain,json}
                         set format of output
 ```
 
 ## About gendiff
-This is a cli utility that compares two configuration files with each other. The result of comparing files can be output in different formats: for example, plain ("flat"), json ("JSON format") or nested ("tree-like").
+This is a cli utility that compares two configuration files with each other. The result of comparing files can be output in different formats: for example, plain ("flat"), json ("JSON format") or stylish ("nested").
 ## Demo
-### Nested
+### Stylish
 [![asciicast](https://asciinema.org/a/Yj8qVarAbMEZiSboOwx5lZFSE.svg)](https://asciinema.org/a/Yj8qVarAbMEZiSboOwx5lZFSE)
 ### Plain
 [![asciicast](https://asciinema.org/a/CTfHD8nRjxNDDdPKYfOe1TCpF.svg)](https://asciinema.org/a/CTfHD8nRjxNDDdPKYfOe1TCpF)

@@ -1,5 +1,4 @@
-from ..parser import get_parser
-from gendiff import generate_diff
+from gendiff import generate_diff, get_parser
 import sys
 
 
