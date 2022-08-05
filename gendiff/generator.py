@@ -4,7 +4,7 @@ from .formatters.make_plain import make_plain
 from .formatters.jsonify import to_json
 
 
-def generate_diff(path1: str, path2: str, output_mode: str) -> str:
+def generate_diff(path1: str, path2: str, output_mode: str = "nested") -> str:
     """Calculates the difference between two files (they can be diffent formats)."""
 
     file1 = get_file(path1)
