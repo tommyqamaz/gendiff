@@ -10,7 +10,7 @@ path1_json = get_fixture_path("file1.json")
 path2_json = get_fixture_path("file2.json")
 path1_yml = get_fixture_path("file1.yml")
 path2_yml = get_fixture_path("file2.yml")
-output_mode1 = "nested"
+output_mode1 = "stylish"
 
 plain_cases = [
     (path1_json, path2_json, output_mode1),
