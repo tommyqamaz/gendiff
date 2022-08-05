@@ -2,7 +2,6 @@ from argparse import Namespace
 import pytest
 
 from gendiff.parser import get_parser
-from gendiff import __version__
 
 
 def test_parser():
