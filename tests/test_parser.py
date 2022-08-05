@@ -19,5 +19,5 @@ def test_parser():
     assert excinfo.value.code == 2
 
     assert parser.parse_args(["first/path", "second/path"]) == Namespace(
-        format="nested", first_file="first/path", second_file="second/path"
+        format="stylish", first_file="first/path", second_file="second/path"
     )
